@@ -349,7 +349,7 @@ public class CI_Matricula extends javax.swing.JFrame {
         jButton1.setText("Nuevo");
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
-        jButton2.setText("Guardar");
+        jButton2.setText("Matricular");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

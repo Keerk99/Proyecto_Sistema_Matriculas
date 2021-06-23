@@ -12,6 +12,7 @@ public static Connection getConnection() {
     
     /*hola mundo*/
     /*prueba desde el repositorio remoto*/
+    /*Si funciona wey-*/
     try {
         
        String url ="jdbc:sqlserver://DESKTOP-AOH77K3:1433;databaseName=DBMATRICULA;user=sa;password=123456";

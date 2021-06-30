@@ -5,6 +5,9 @@
  */
 package Interfaces;
 
+import Modelo.DocenteDAO;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Personal
@@ -16,9 +19,13 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
      */
     public CI_ReporteDocente() {
         initComponents();
+        listar(); //para que cuando cargue se muestre automaticamente
         setLocationRelativeTo(null);
     }
-
+    private void listar(){
+         DocenteDAO da = new DocenteDAO();
+        TablaReporteDocente.setModel(da.getLista());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,28 +35,37 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtCodigoNombreDocente = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         btnBuscarRD = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReporteDocente = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        cbSeleccion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ingrese codigo o nombre:");
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
 
         btnBuscarRD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.png"))); // NOI18N
         btnBuscarRD.setText("Buscar");
+        btnBuscarRD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarRDActionPerformed(evt);
+            }
+        });
 
         TablaReporteDocente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Apellido", "Nombre", "DNI", "Teléfono", "Grado de Instrucción"
+
             }
         ));
         jScrollPane1.setViewportView(TablaReporteDocente);
@@ -72,7 +88,7 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(133, Short.MAX_VALUE)
+                .addContainerGap(273, Short.MAX_VALUE)
                 .addComponent(jLabel16)
                 .addGap(267, 267, 267))
         );
@@ -84,17 +100,19 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
+        cbSeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre", "Grado de Instruccion", "Curso" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(txtCodigoNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
+                .addComponent(cbSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(btnBuscarRD)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -112,9 +130,9 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigoNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnBuscarRD))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarRD)
+                    .addComponent(cbSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -130,6 +148,19 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
         CI_Menu me = new CI_Menu();
         me.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        DocenteDAO da = new DocenteDAO();
+        char tecla = evt.getKeyChar();
+        if(tecla==KeyEvent.VK_ENTER){
+            TablaReporteDocente.setModel(da.getBuscar(cbSeleccion.getSelectedIndex(),txtBuscar.getText()));
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnBuscarRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRDActionPerformed
+       DocenteDAO da = new DocenteDAO();
+       TablaReporteDocente.setModel(da.getBuscar(cbSeleccion.getSelectedIndex(),txtBuscar.getText()));
+    }//GEN-LAST:event_btnBuscarRDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,10 +201,10 @@ public class CI_ReporteDocente extends javax.swing.JFrame {
     private javax.swing.JTable TablaReporteDocente;
     private javax.swing.JButton btnBuscarRD;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbSeleccion;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCodigoNombreDocente;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,7 @@
 package Negocio;
 
 import java.sql.*;
-
+import java.sql.DriverManager;
 public class Conexion {
     
     
@@ -12,13 +12,12 @@ public static Connection getConnection() {
     
     /*hola mundo*/
     /*prueba desde el repositorio remoto*/
-    /*Si funciona wey-*/
+   
     try {
-        
-       String url ="jdbc:sqlserver://DESKTOP-AOH77K3:1433;databaseName=DBMATRICULA;user=sa;password=123456";
-        
-         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-         con = DriverManager.getConnection(url);
+          Class.forName("com.mysql.jdbc.Driver");      
+         // String url ="jdbc:sqlserver://DESKTOP-AOH77K3:1433;databaseName=matricula;root;password";       
+         //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+         con = DriverManager.getConnection("jdbc:mysql://localhost/matricula","root","");
          System.out.println("Conexion exitosa"); 
   
          
@@ -40,7 +39,8 @@ public static Connection getConnection() {
     
 }
     
-    
+  
+   
     
     
     

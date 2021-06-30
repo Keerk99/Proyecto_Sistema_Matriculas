@@ -477,8 +477,32 @@ public class CI_ProfesorNuevo extends javax.swing.JFrame {
             doc.setCurso(curso);
             d.AgregarDocente(doc);
         }
+        
+        
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txtdni.setText("");
+        txtdireccion.setText("");
+        txttelefono.setText("");
+        
+        cbPeriodo.setSelectedIndex(0);
+        cbGradoP.setSelectedIndex(0);
+        cbSeccionP.setSelectedIndex(0);
+        
+        cbCurso.setSelectedIndex(0);
+        cbgrado1.setSelectedIndex(0);
+        cbgrado2.setSelectedIndex(0);
+        cbgrado3.setSelectedIndex(0);
+        cbgrado4.setSelectedIndex(0);
+        cbgrado5.setSelectedIndex(0);
+        
+        cbseccion1.setSelectedIndex(0);
+        cbseccion2.setSelectedIndex(0);
+        cbseccion3.setSelectedIndex(0);
+        cbseccion4.setSelectedIndex(0);
+        cbseccion5.setSelectedIndex(0);
 
-
+        txtnombre.requestFocus();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cbPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPeriodoActionPerformed
